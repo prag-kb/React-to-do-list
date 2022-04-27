@@ -18,14 +18,14 @@ export class App extends Component {
         key: ''
       }
     }
-    this.handleInput = this.handleInput.bind(this);
-    this.addItem = this.addItem.bind(this);
-    this.deleteItem = this.deleteItem.bind(this);
-    this.setUpdate = this.setUpdate.bind(this);
+    // this.handleInput = this.handleInput.bind(this);
+    // this.addItem = this.addItem.bind(this);
+    // this.deleteItem = this.deleteItem.bind(this);
+    // this.setUpdate = this.setUpdate.bind(this);
 
   }
 
-  handleInput(e) {
+  handleInput = (e) => {
     this.setState({
       currentItem: {
         text: e.target.value,
@@ -34,7 +34,7 @@ export class App extends Component {
     })
   }
 
-  addItem(e) {
+  addItem = (e) => {
     e.preventDefault();
     const newItem = this.state.currentItem;
     console.log(newItem);
@@ -49,14 +49,15 @@ export class App extends Component {
       })
     }
   }
-  deleteItem(key) {
+
+  deleteItem = (key) => {
     const filteredItems = this.state.items.filter(item => item.key !== key);
     this.setState({
       items: filteredItems
     })
   }
 
-  setUpdate(text, key) {
+  setUpdate = (text, key) => {
     const items = this.state.items;
     items.map(item => {
       if (item.key === key) {
@@ -67,6 +68,7 @@ export class App extends Component {
       items: items
     })
   }
+
   render() {
     return (
       <div className="App">
@@ -77,8 +79,10 @@ export class App extends Component {
 
             <button type='submit'> Add </button>
           </form>
-          <ListItems items={this.state.items} deleteItem={this.deleteItem} setUpdate={this.setUpdate} >
-
+          <ListItems
+            items={this.state.items}
+            deleteItem={this.deleteItem}
+            setUpdate={this.setUpdate} >
           </ListItems>
         </header>
       </div>
